@@ -1,0 +1,4 @@
+{
+"name": "Web Engineering", 
+"image": "mcr.microsoft.com/devcontainers/typescript-node:24"
+}

@@ -7,3 +7,24 @@ Dockerイメージは、アプリのファイル・実行プログラム・設�
 FROM nginx:1.29-alpine　は土台となるイメージを指定する行。Docker Hub にあるNginxのOfficial Image を使うことで、Nginx本体と起動設定を自分で用意する必要がない。
 COPY index.html /user/share/nginx/html/index.html はホスト側にあるindex.htmlをイメージ内のNginxの公開ディレクトリへコピーする行である。これにより、Nginxの標準ページが自分で作ったhtmlに置き換わる。
 ## 動作確認
+## 動作確認
+
+`index.html` の見出しを `<h1>Docker Composeで配信中</h1>` に変更し、`docker compose up -d --build` で再ビルドした。
+
+### 変更後の見出し
+
+`curl http://localhost:8080` の結果に、次の見出しが含まれていることを確認した。ブラウザ（PORTSタブの8080番から `Open in Browser`）でも、見出し「Docker Composeで配信中」が表示された。
+
+```html
+<h1>Docker Composeで配信中</h1>
+```
+
+### docker compose ps の結果
+
+```text
+@4724129 ➜ /workspaces/web-eng-docker (main) $ docker compose ps
+NAME                   IMAGE                COMMAND                  SERVICE   CREATED          STATUS          PORTS
+web-eng-docker-web-1   web-eng-docker-web   "/docker-entrypoint.…"   web       25 seconds ago   Up 24 seconds   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+```
+
+`PORTS` 列に `0.0.0.0:8080->80/tcp` と表示されており、ホストの8080番がコンテナの80番へ転送されていることを確認できた。

@@ -1,1 +1,34 @@
+# 第4回 Webエンジニアリング演習 レポート
 
+## 学籍番号
+4724129
+
+## `const`と`let`の宣言・再代入に使用したコード
+```ts
+const courseName = "Web Engineering";
+let retryCount = 1;
+
+courseName = "Other Course"; // エラー確認後に削除した
+retryCount = 2;
+```
+
+## VSCodeと`pnpm run check`に表示されたエラー番号・メッセージ
+VSCode: `ts(2588)`
+
+`pnpm run check` の出力:
+```
+$ tsc --noEmit
+src/index.ts:23:1 - error TS2588: Cannot assign to 'courseName' because it is a constant.
+
+23 courseName = "Other Course"; // エラー確認後に削除する
+   ~~~~~~~~~~
+
+Found 1 error in src/index.ts:23
+
+[ELIFECYCLE] Command failed with exit code 2.
+```
+
+## 修正後の実行結果と`const`・`let`の違いの説明
+`const` は、宣言した変数名に別の値を再代入することを禁止する。`const courseName = "Web Engineering";` に対して `courseName = "Other Course";` と書くと、TypeScriptの型検査で `TS2588: Cannot assign to 'courseName' because it is a constant.` というエラーになり、実行する前に誤りに気づけた。
+一方、`let` は後から値を入れ替えられる。`let retryCount = 1;` に対して `retryCount = 2;` と再代入してもエラーにならず、実行結果にも 2 と表示された。
+この結果から、値を変えない変数には `const`、再代入が必要な変数にだけ `let` を使うのがよいと分かった。`const` を基本にすると、意図しない再代入を実行前にエディタやコマンドで検出できる。

@@ -64,7 +64,6 @@ const isOverdue = todo.dueDate !== undefined && todo.dueDate < today;
 | Stateを更新する | なし | 日付は表示されない |
 
 以下、スクリーンショットです。publicではないため、クリックしても見れないかもしれないです。
-<img width="945" height="950" alt="class08-result" src="https://github.com/user-attachments/assets/4adf73e0-ce55-4891-b7db-92ad3ed3f22d" />
-
+![期限あり・なしの画面確認結果](class08-result.png)
 
 `pnpm run build` も、型エラーなしで成功した。

@@ -63,7 +63,7 @@ const isOverdue = todo.dueDate !== undefined && todo.dueDate < today;
 | Propsを確認する | 2026-11-10（期限切れ） | 「期限: 2026-11-10」が赤文字で表示される |
 | Stateを更新する | なし | 日付は表示されない |
 
-以下、スクリーンショットです。publicではないため、クリックしても見れないかもしれないです。
+以下、スクリーンショットです。publicではないため、見れていないかもしれないです。
 ![期限あり・なしの画面確認結果](class08-result.png)
 
 `pnpm run build` も、型エラーなしで成功した。
